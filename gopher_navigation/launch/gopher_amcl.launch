@@ -1,0 +1,65 @@
+<launch>
+  <arg name="robot_name" default="gopher"/>
+  <arg name="prefix" default="$(arg robot_name)/"/>
+  <arg name="scan" default="base_scan"/> 
+  <arg name="odom_frame" default="$(arg prefix)odom"/>
+  <arg name="base_frame" default="$(arg prefix)base_link"/>
+  <arg name="laser_frame" default="$(arg prefix)laser_link"/>
+  <arg name="cmd_vel" default="base_controller/cmd_vel"/> 
+
+  <!-- AMCL Node for localization-->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <param name="use_map_topic" value="true"/>
+    <remap from="map" to="/map"/>
+    <remap from="scan" to="$(arg scan)"/>
+    
+    <!-- Particle Filter parameters declaration -->
+    <param name="min_particles" value="20"/>
+    <param name="max_particles" value="200"/>
+    <param name="update_min_a" value="0.1"/>
+    <param name="update_min_d" value="0.25"/>
+
+    <!-- Laser parameters -->
+    <!-- Odometry information -->
+    <param name="odom_frame_id" value="$(arg odom_frame)"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="base_frame_id" value="$(arg base_frame)"/>
+    <param name="global_frame_id" value="/map"/>
+  </node>
+
+  <!-- Move Base for navigation of Gopher robot -->
+  <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+    <param name="controller_frequency" value="10.0"/>
+    
+    <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+    <remap from="map" to="/map"/>
+
+    <!-- Loading configuration files for local and global cost maps and planners -->
+    <rosparam file="$(find gopher_navigation)/config/costmap_common_params.yaml" 
+      command="load" ns="global_costmap" subst_value="true"/>
+    <rosparam file="$(find gopher_navigation)/config/costmap_common_params.yaml"
+      command="load" ns="local_costmap" subst_value="true"/>
+    <rosparam file="$(find gopher_navigation)/config/local_costmap_params.yaml" 
+      command="load" subst_value="true"/>
+    <rosparam file="$(find gopher_navigation)/config/global_costmap_params.yaml" 
+      command="load" subst_value="true"/>
+    <rosparam file="$(find gopher_navigation)/config/base_local_planner_params.yaml" 
+      command="load"/>
+
+    <!-- Uncomment local planners as per the requirement -->
+    <!-- Teb Planner -->   
+    <!-- <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" /> -->
+
+    <!-- dwa Planner -->   
+    <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> -->
+
+    <!-- MPC Planner -->
+		<!-- <param name="base_local_planner" value="mpc_local_planner/MpcLocalPlannerROS" />
+    <param name="controller_frequency" value="10.0" />
+		<param name="controller_patience" value="10.0" /> -->
+
+    <!-- Global Planner -->  
+    <rosparam file="$(find gopher_navigation)/config/global_planner_params.yaml" 
+      command="load"/>    
+  </node>
+</launch>

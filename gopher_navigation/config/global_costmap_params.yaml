@@ -1,0 +1,7 @@
+#tuned global costmap parameters
+
+global_costmap:
+   global_frame: map
+   robot_base_frame: $(arg base_frame)
+   update_frequency: 20.0
+   static_map: true

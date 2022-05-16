@@ -1,0 +1,15 @@
+#tuned common costmap paramters
+map_type: costmap
+
+#Range parameters
+obstacle_range: 10.0
+raytrace_range: 10.0
+
+#radius of robot and inflation
+robot_radius: 0.4
+inflation_radius: 0.2
+
+#sensor information parameters
+observation_sources: laser_scan_sensor
+
+laser_scan_sensor: {sensor_frame: $(arg laser_frame), data_type: LaserScan, topic: $(arg scan), marking: true, clearing: true}
