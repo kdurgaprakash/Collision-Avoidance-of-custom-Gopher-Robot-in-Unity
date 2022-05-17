@@ -17,10 +17,12 @@ Gopher-In-Unity-Simulation and Gopher-ROS-Unity git repositories are taken as ba
 GMapping
 ![alt text](./media/gmapping.gif "gmapping")
 
-####RESULTS
-TEB Planner
+####RESULTS - TEB Planner
+
 ![alt text](./media/TEB_planner.gif "TEB planner")
-DWA Planner
+
+####RESULTS - DWA Planner
 ![alt text](./media/DWA_planner.gif "DWA planner")
-MPC Planner
+
+####RESULTS - MPC Planner
 ![alt text](./media/MPC_planner.gif "MPC planner")
