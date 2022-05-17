@@ -1,7 +1,5 @@
 # Collision-Avoidance-of-custom-Gopher-Robot-in-Unity
 
-All the packages required for the project are included in the "Unity-Gopher-Local-Planners.zip" file.
-
 Packages list:
 robot description package - "gopher_description"
 robot navigation package - "gopher_navigation"
