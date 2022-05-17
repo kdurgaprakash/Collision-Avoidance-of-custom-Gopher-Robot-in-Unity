@@ -13,16 +13,16 @@ Steps to run the project:
 
 Gopher-In-Unity-Simulation and Gopher-ROS-Unity git repositories are taken as base and modified as per our project requirement
 
-####SLAM Gmapping
+#### SLAM Gmapping
 
 ![alt text](./media/gmapping.gif "gmapping")
 
-####RESULTS - TEB Planner
+#### RESULTS - TEB Planner
 
 ![alt text](./media/TEB_planner.gif "TEB planner")
 
-####RESULTS - DWA Planner
+#### RESULTS - DWA Planner
 ![alt text](./media/DWA_planner.gif "DWA planner")
 
-####RESULTS - MPC Planner
+#### RESULTS - MPC Planner
 ![alt text](./media/MPC_planner.gif "MPC planner")
